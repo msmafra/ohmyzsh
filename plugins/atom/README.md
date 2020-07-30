@@ -7,13 +7,21 @@ To enable, add it to the `plugins` array inside your zsh resources file in `~/.z
 Search for a line or lines begining with the word 'plugins' followed by an iquals sign `=` and an open parenthesis `(` to narrow the results.
 
 ```
+<<<<<<< HEAD
 egrep --recursive --line-number "^plugins\=\(" ~/.zshrc
+=======
+grep --extended-regexp --recursive --line-number "^plugins\=\(" ~/.zshrc
+>>>>>>> e939f2659a5df1e2128e56ddb45c9c8a4197b326
 ```
 
 This can put you on the right line, assuming that it got only one (which I hope). I is also assumed that the `EDITOR` varible is defined and contains nano, vi, vim or even atom as the set editor:
 
 ```
+<<<<<<< HEAD
 "${EDITOR}" +$(egrep --recursive --line-number "^plugins\=\(" ~/.zshrc | awk --field-separator ":" '{print $1}') ~/.zshrc
+=======
+"${EDITOR}" +$(grep --extended-regexp --recursive --line-number "^plugins\=\(" ~/.zshrc | awk --field-separator ":" '{print $1}') ~/.zshrc
+>>>>>>> e939f2659a5df1e2128e56ddb45c9c8a4197b326
 ```
 
 Once at the right line, add `atom` after the last item of the array:
