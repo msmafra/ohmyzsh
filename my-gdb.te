@@ -1,0 +1,16 @@
+
+module my-gdb 1.0;
+
+require {
+	type unlabeled_t;
+	type abrt_t;
+	type v4l_device_t;
+	class file { open read };
+	class chr_file open;
+}
+
+#============= abrt_t ==============
+
+#!!!! This avc is allowed in the current policy
+allow abrt_t unlabeled_t:file { open read };
+allow abrt_t v4l_device_t:chr_file open;
