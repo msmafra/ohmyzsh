@@ -1,0 +1,11 @@
+
+module my-rpmdb 1.0;
+
+require {
+	type net_conf_t;
+	type rpmdb_t;
+	class lnk_file read;
+}
+
+#============= rpmdb_t ==============
+allow rpmdb_t net_conf_t:lnk_file read;
