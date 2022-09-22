@@ -15,15 +15,18 @@
 #   https://github.com/babakks
 #
 execName="codium"
-codiumExists=$( \which "${execName:-NULL}" 2>&1 )
+execNameFlatpak="$(flatpak run $(flatpak list --columns=application | grep -Ei codium))"
+#codiumExists=$( \which "${execName:-NULL}" 2>&1 )
+codiumExists=$( \command -v "${execName:-NULL}" 2>&1 )
+codiumExistsFlatpak=$( flatpak list --columns=application | grep -Ei "codium" 2>&1 )
 
 if [[ -f "${codiumExists}" ]];then
   : ${VSCODIUM:=codium}
+elif [[ -f "${codiumExistsFlatpak}"  ]];then
+  : ${VSCODIUM:="flatpak list --columns=application | grep -Ei codium"}
 else
-  : ${VSCODIUM:-}
   printf "%s\n" "The executable 'codium' could not be found!"
 fi
-
 # Definining alias for all known options
 if (( $+commands[codium] ));then
 # Open current directory

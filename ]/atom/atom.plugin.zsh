@@ -14,8 +14,9 @@ atomExists=$( \which "${execName:-NULL}" 2>&1 )
 
 if [[ -f "${atomExists}" ]];then
   : ${ATOM:=atom}
+else if
+  : ${ATOM:="flatpak run io.atom.Atom"}
 else
-  : ${ATOM:-}
   printf "%s\n" "The executable 'atom' could not be found!"
 fi
 
